@@ -1,7 +1,7 @@
 import urllib.request
 import pandas as pd
 from bs4 import BeautifulSoup
-
+import datetime
 
 shops = []
 
@@ -19,8 +19,8 @@ for i in range(1, 51):
         shop_addr = tds[3].string
         shop_phone = tds[5].string
 
-        shops.append([shop_name]+[shop_addr]+[shop_phone])
+        shops.append([shop_name]+[shop_addr]+[shop_phone]+[datetime.datetime.now()])
 
 #print(shops)
-hollys_df = pd.DataFrame(shops, columns=('매장이름', '주소', '전화번호'))
+hollys_df = pd.DataFrame(shops, columns=('매장이름', '주소', '전화번호','일시'))
 hollys_df.to_csv('holly.csv', encoding='cp949' ,mode='w')
